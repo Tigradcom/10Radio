@@ -1,6 +1,4 @@
 package ru.netology.javaqa.javaqamvn.services;
-
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -76,18 +74,6 @@ public class RadioTest {
         radio.pervVolume();
 
         assertEquals(expected, radio.getCurrentVolume());
-    }
-
-    @Test
-    public void volumeMin() {
-        Radio radio = new Radio();
-        int currentVolume = 10;
-        while (currentVolume >= 0) {
-            radio.setCurrentVolume(currentVolume);
-            currentVolume--;
-        }
-        radio.pervVolume();
-        assertEquals(5, radio.getCurrentRadioStation());
     }
 
     @ParameterizedTest
