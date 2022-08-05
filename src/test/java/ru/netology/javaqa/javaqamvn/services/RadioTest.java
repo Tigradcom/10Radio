@@ -1,4 +1,5 @@
 package ru.netology.javaqa.javaqamvn.services;
+
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -27,10 +28,29 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
+            "15,16",
+            "0,1",
+            "18,19",
+            "19,0",
+            "-1,1",
+            "50,1",
+    })
+
+    public void nextStationAmount(int currentRadioStation, int expected) {
+        Radio radio = new Radio(20);
+        radio.setCurrentRadioStation(currentRadioStation);
+
+        radio.nextStation();
+
+        assertEquals(expected, radio.getCurrentRadioStation());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
             "5,4",
             "9,8",
             "0,9",
-            "10,9",
+            "15,9",
             "-1,9"
     })
     public void pervStation(int currentRadioStation, int expected) {
@@ -44,10 +64,27 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvSource({
-            "5,6",
-            "10,10",
+            "5,4",
+            "14,13",
+            "0,14",
+            "15,14",
+            "-1,14"
+    })
+    public void pervStationAmount(int currentRadioStation, int expected) {
+        Radio radio = new Radio(15);
+        radio.setCurrentRadioStation(currentRadioStation);
+
+        radio.pervStation();
+
+        assertEquals(expected, radio.getCurrentRadioStation());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "75,76",
+            "100,100",
             "0,1",
-            "15,1",
+            "150,1",
             "-5,1"
     })
     public void nextVolume(int currentVolume, int expected) {
@@ -63,8 +100,8 @@ public class RadioTest {
     @CsvSource({
             "6,5",
             "0,0",
-            "10,9",
-            "15,0",
+            "100,99",
+            "150,0",
             "-5,0"
     })
     public void pervVolume(int currentVolume, int expected) {
@@ -80,8 +117,8 @@ public class RadioTest {
     @CsvSource({
             "0,6",
             "3,9",
-            "4,10",
-            "10,10"
+            "96,100",
+            "100,100"
     })
     public void volumeMax(int currentVolume, int expected) {
         Radio radio = new Radio();
